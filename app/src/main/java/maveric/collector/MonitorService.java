@@ -73,5 +73,6 @@ public class MonitorService extends IntentService {
         //  to a REST API.
         // Create additional classes as needed. If root privileges are require, then root privileges
         //  will be arranged. Bonus points if they aren't needed.
+        TcpdumpCapture.initialiseCapture();
     }
 }
