@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#Start script like so: ./super_root ~/Path/To/sdk/adb_binary ~/Path/To/sdk/emulator_binary emulator_name ~/Path/to/new_su_bin
+# ./super_root ~/Documents/sdk/platform-tools/adb ~/Documents/sdk/emulator/emulator Nexus5API24Emulator ./su_folder/x86/su.pie
+#Make sure the emulator is Google API, and not Playstore
+#to get the exact name of your emulator_name try running ~/Path/To/sdk/emulator_binary -list-avds
+
+ADB_BIN=$1
+EMULATOR_BIN=$2
+EMULATOR_NAME=$3
+NEW_SU_BIN=$4
+
+eval "$EMULATOR_BIN -avd $EMULATOR_NAME -writable-system &"
+
+#initial boot takes a while, sleep for 30 so adb can connect to the device when it boots up
+sleep 30
+
+eval "$ADB_BIN root"
+eval "$ADB_BIN remount"
+
+eval "$ADB_BIN -e push $NEW_SU_BIN /system/xbin/su"
+
+eval "$ADB_BIN shell chmod 06755 /system/xbin/su"
+eval "$ADB_BIN shell /system/xbin/su --install"
+eval "$ADB_BIN shell /system/xbin/su --daemon&"
+eval "$ADB_BIN shell setenforce 0"
