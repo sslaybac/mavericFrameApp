@@ -1,4 +1,4 @@
-package maveric.collector;
+package maveric.net;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

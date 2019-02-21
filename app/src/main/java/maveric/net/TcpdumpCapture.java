@@ -1,6 +1,6 @@
 // credit to https://github.com/yadavdev/android-packet-capture for the help - pretty much all this code is from there
 
-package maveric.collector;
+package maveric.net;
 
 import android.app.ProgressDialog;
 import android.util.Log;
@@ -49,7 +49,7 @@ public class TcpdumpCapture {
             }
             Log.i("reply","Attempting to start tcpdump");
             // run tcpdump for 60 seconds then output to /mnt/sdcard/meep.pcap
-            rootTcpdumpShell.addCommand("tcpdump -w /mnt/sdcard/meep.pcap -G 60", 0, new Shell.OnCommandLineListener() {
+            rootTcpdumpShell.addCommand("tcpdump -i any -w /mnt/sdcard/meep.pcap -G 60", 0, new Shell.OnCommandLineListener() {
                 @Override
                 public void onCommandResult(int commandVal, int exitVal) {
                     if (exitVal < 0) {

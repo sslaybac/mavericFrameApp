@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">collector</string>
+    <string name="app_name">net</string>
     <string name="api_url">https://jsonplaceholder.typicode.com/posts/1</string>
 </resources>

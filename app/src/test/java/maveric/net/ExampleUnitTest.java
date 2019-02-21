@@ -1,4 +1,4 @@
-package maveric.collector;
+package maveric.net;
 
 import org.junit.Test;
 
